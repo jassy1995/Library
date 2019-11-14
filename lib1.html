@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="csslib.css">
+</head>
+<body>
+  <center>
+     <h1 class="xe">SQI LIBRARY</h1>
+  </center>
+   <div class="all">
+
+	<div class="div-nav">
+	<h1>TITLE:</h1> <input type="" id="booktitle" name=""><br><br>
+	<h1>PAGES:</h1> <input type="" id="mypage" name=""><br><br>
+ <h1>	AUTHOR:</h1> <input type="" id="myauthor" name=""><br><br>
+	<button id="jj" onclick="display()" onmouseout="clear()">ADD BOOK</button> 
+   
+
+
+
+</div>
+<div class="secon">
+	<button class="ax" onclick="showlist()">CHECK  AVAILABLE BOOKS</button>
+	<table border="1" id="demo" width="20%" height="auto">
+		<thead>
+			<th>Author</th>
+			<th>Title</th>
+			<th>Pages</th>
+		</thead>
+    <tbody id="hj">
+      
+    </tbody >
+      
+
+	</table>
+</div>
+</div>
+
+
+     <script type="text/javascript">
+     	function display(){
+     	     lib=JSON.parse(localStorage.books);
+     		var obj={title:booktitle.value,pages:mypage.value,author:myauthor.value}
+     		if (obj.title=="" || obj.pages=="" || obj.author=="") {
+                  alert('please fill in the input')
+     		}
+     		else{
+     		   lib.push(obj);
+     	      localStorage.books=JSON.stringify(lib);	
+     	      	booktitle.value=""
+             	mypage.value=""
+             	myauthor.value=""	
+     		}
+
+     	}
+           function showlist(){
+           	 var tt=''
+            var bk=JSON.parse(localStorage.books)
+               for (var i = 0; i < bk.length; i++) {
+               	var lis;
+               	lis='<td>'+bk[i].author+'</td>'+'<td>'+bk[i].title+'</td>'+'<td>'+bk[i].pages+'</td>';
+               	var c='<tr>'+lis+'</tr>';
+                
+                 tt+=c;
+               }
+              hj.innerHTML=tt;
+
+           }
+
+
+     </script>
+</body>
+</html>
+
+
+
